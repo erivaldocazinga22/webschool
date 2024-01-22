@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->unique()->constrained('users');
+            $table->foreignId('user_id')->unique()->constrained('users');
             $table->string('curso', 200);
             $table->string('classe', 200);
             $table->string('turma', 200);

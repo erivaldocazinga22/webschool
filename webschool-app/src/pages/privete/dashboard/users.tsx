@@ -2,13 +2,34 @@ import { LuSearch, LuUserPlus2 } from "react-icons/lu";
 import BookMarker from "../../../components/basics/BookMarker";
 import { SearchBar } from "../../../components/basics/SearchBar";
 import TableList from "../../../components/basics/TableList";
-import { useSession } from "../../../contexts/session/sessionContext";
 import AddNewUser from "../../../components/pages/user/AddNewUser";
 import { FilterPopUp } from "../../../components/basics/FilterPopUp";
+import { useEffect, useState } from "react";
+import { api } from "../../../axios.config";
+import { parseCookies } from "nookies";
 
 export default function Users() {
 
-    const { user } = useSession(); 
+    
+
+    const [users,setUsers] = useState([]);
+
+    useEffect(()=> {
+        const handler = async ()=>{
+            const { "webschool.token": token } = parseCookies();
+            const { data: response } = await api.get("/dashboard/usuarios", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            console.log(response.data);
+            
+            setUsers(response.data);
+        }
+            handler()
+
+    },[])
 
     return (
         <div className="space-y-4">
@@ -49,7 +70,7 @@ export default function Users() {
             <main className="h-full px-6">
                 <TableList typeList="user"
                     dataHead={["Processo", "Usuário", "Identificação","Telefone", "Sexo"]} 
-                    dataBody={user && [user, user, user]} />
+                    dataBody={users} />
             </main>
         </div>
     )

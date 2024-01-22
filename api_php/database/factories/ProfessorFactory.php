@@ -18,7 +18,7 @@ class ProfessorFactory extends Factory
     public function definition(): array
     {
         return [
-           'id_user'=> User::all()->random()->id,
+           'user_id'=> User::all()->random()->id,
            'curso'=> $this->faker->randomElement(['Informatica', 'Bioquimica']),
            'classe' => $this->faker->numberBetween(7, 13),
            'turma'=> $this->faker->randomElement(['A', 'B', 'C'])

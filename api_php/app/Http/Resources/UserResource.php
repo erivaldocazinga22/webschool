@@ -36,7 +36,7 @@ class UserResource extends JsonResource
             'nivel' => $this->nivel,
             'Processo' => $this->processo,
             'Nome' => $this->name,
-            'E-mail' => $this->email,
+            'Email' => $this->email,
             'Telefone' => $this->telefone,
         ];
     }

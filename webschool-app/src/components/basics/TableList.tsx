@@ -24,6 +24,10 @@ type TableListProps = {
 };
 
 export default function TableList({ typeList, dataHead, dataBody }: TableListProps) {
+
+  console.log(dataBody);
+  
+
   return (
     <div className="relative overflow-x-auto sm:rounded-lg">
       <table className="w-full">
@@ -49,7 +53,7 @@ export default function TableList({ typeList, dataHead, dataBody }: TableListPro
               </td>
               <td>
                 <div className="w-full px-4 py-2 flex items-center justify-center">
-                  {typeList !== "user" ? body.id : body.processo}
+                  {typeList !== "user" ? body.id : body.Processo}
                 </div>
               </td>
 
@@ -57,8 +61,8 @@ export default function TableList({ typeList, dataHead, dataBody }: TableListPro
                 <div className="flex items-center justify-start gap-2 px-4 py-2">
                   <Avatar className="w-10 h-10 cursor-default bg-zinc-200" data={{ avatar_url: body.avatar_url, name: body.name }} />
                   <div className="flex flex-col">
-                    <span className="text-sm">{body.name}</span>
-                    <span className="text-xs text-zinc-600">{body.email}</span>
+                    <span className="text-sm">{body.Nome}</span>
+                    <span className="text-xs text-zinc-600">{body.Email}</span>
                   </div>
                 </div>
               </td>
@@ -89,7 +93,7 @@ export default function TableList({ typeList, dataHead, dataBody }: TableListPro
                   </td>
                   <td>
                     <div className="w-full flex items-center justify-center">
-                      {body.telefone}
+                      {body.Telefone}
                     </div>
                   </td>
                   <td>

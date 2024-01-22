@@ -23,7 +23,7 @@ export default function Login() {
     async function handleLogin({ email, password }: LoginFormData) {
         try {
             setLoading(true);
-            const { data: response } = await api.post("/register", { email, password });
+            const { data: response } = await api.post("/login", { email, password });
             
             setCookie(undefined, "webschool.token", response.token, {
                 maxAge: 60 * 60 * 24 * 1, //1 day
@@ -41,7 +41,7 @@ export default function Login() {
     }
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         const handleAuthenticated = async () => {
             const { "webschool.token": token } = parseCookies();
 
@@ -49,7 +49,7 @@ export default function Login() {
             navigate("/", { replace: true })
         }; 
         handleAuthenticated();
-    }, [navigate]);
+    }, [navigate]); */
 
 
     return (
