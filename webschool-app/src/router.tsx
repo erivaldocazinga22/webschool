@@ -44,12 +44,12 @@ export const Routers = createBrowserRouter([
             {
                 path: "/dashboard/vitrine",
                 element: <DashVitrine />
-            }
+            },
+            {
+                path: "/dashboard/messages",
+                element: <Message />,
+            },
         ]
-    },
-    {
-        path: "/dashboard/messages",
-        element: <Message />,
     },
     {
         element: <RootLayout />,

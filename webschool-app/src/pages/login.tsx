@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { parseCookies, setCookie } from "nookies";
+import { useState } from "react";
+import { setCookie } from "nookies";
 import { toast } from "react-toastify";
 import { twMerge } from "tailwind-merge";
 import { useForm } from "react-hook-form";
@@ -39,18 +39,6 @@ export default function Login() {
         } 
         finally { setLoading(false) }
     }
-
-
-    /* useEffect(() => {
-        const handleAuthenticated = async () => {
-            const { "webschool.token": token } = parseCookies();
-
-            !token && navigate("/login", { replace: true });
-            navigate("/", { replace: true })
-        }; 
-        handleAuthenticated();
-    }, [navigate]); */
-
 
     return (
         <div className="w-full h-full flex bg-emerald-400">

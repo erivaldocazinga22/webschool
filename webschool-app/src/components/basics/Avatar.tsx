@@ -32,7 +32,7 @@ export default function Avatar({ data: user, className = "" }: AvatarProps) {
     return (
         <div
             className={twMerge(`
-                w-12 h-12 rounded-full select-none cursor-pointer flex items-center justify-center 
+                w-12 h-12 min-w-10 min-h-10 rounded-full select-none cursor-pointer flex items-center justify-center 
                 border border-zinc-200 dark:border-webschool-300 overflow-hidden
                 bg-white dark:bg-webschool-200 transition-colors duration-150
             `, className)}

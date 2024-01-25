@@ -47,7 +47,7 @@ export default function CreatePostForm() {
                             cols={30} 
                             rows={10}
                             placeholder={`Em que estás a pensar, ${user?.name.split(" ")[0][0].toUpperCase()}${user?.name.split(" ")[0].substring(1)} ?`} 
-                            className="w-full h-full px-4 py-2 rounded-md placeholder:text-webschool-100 dark:placeholder:text-webschool-100 outline-none bg-zinc-200 dark:bg-webschool-300"
+                            className="w-full px-4 py-2 rounded-md placeholder:text-webschool-100 dark:placeholder:text-webschool-100 outline-none bg-zinc-200 dark:bg-webschool-300"
                         />
                         <div className="w-full rounded-md px-4 py-2 flex items-center gap-2 justify-between border border-zinc-300 dark:border-webschool-200">
                             <div>

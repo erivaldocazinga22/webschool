@@ -23,7 +23,7 @@ export default function AddNewUser({ icon:Icon, label }: AddNewUserProps) {
 
     return (
         <Modal style={{
-            modalBox: `min-h-max sm:max-w-[420px]`
+            modalBox: `min-h-max sm:max-w-[420px] rounded-xl`
         }} element={
             <button type="button" 
                 className="px-4 py-2 flex items-center gap-1 rounded-md text-white bg-webschool-first">
@@ -47,7 +47,7 @@ export default function AddNewUser({ icon:Icon, label }: AddNewUserProps) {
                 ) : (
                     <div>
                         <Button type="button" onClick={()=> handleChangeViewForm(null)}
-                            className="bg-transparent p-0 text-zinc-900 text-sm hover:underline hover:text-blue-700 group"
+                            className="bg-transparent p-0 text-zinc-900 dark:text-webschool-100 text-sm hover:underline hover:text-blue-700 dark:hover:text-blue-700 group"
                         > 
                             <LuArrowLeft className="group-hover:-translate-x-1 transition-transform duration-150" />
                             <span>Back</span>

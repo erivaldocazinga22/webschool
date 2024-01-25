@@ -3,36 +3,16 @@ import { LuArrowLeft, LuListFilter, LuSearch, LuSmile } from "react-icons/lu";
 import { useSession } from "../../contexts/session/sessionContext";
 import Avatar from "../../components/basics/Avatar";
 import Popup from "../../components/basics/Popup";
-import { useEffect, useState } from "react";
 import { UserData } from "../../types";
-import { api } from "../../axios.config";
-import { toast } from "react-toastify";
 import { SearchBar } from "../../components/basics/SearchBar";
 import { Link } from "react-router-dom";
 export default function Message() {
 
     const { user } = useSession();
-    const [users, setUsers] = useState<UserData[] | null>(null);
+    const users: UserData[] = [];
 
-    useEffect(()=>{
-        const handleGetAllUsers = async () => {
-            try {
-                const response = await api("/users");
-
-                if (!response.data) {
-                    return toast.error("Nenhum usuário encontrado!");
-                }
-                
-                setUsers(response.data.results);
-                
-            } catch (error) {
-                toast.error("Nenhum usuário encontrado!");
-            }
-                
-        }
-
-        handleGetAllUsers();
-    },[])
+    console.log(user?.avatar_url);
+    
 
     return (
         <div className="w-full min-h-screen h-screen flex text-zinc-900 bg-white dark:text-white dark:bg-webschool-400 transition-colors duration-150">
@@ -47,6 +27,7 @@ export default function Message() {
                             </Link>
                             <div className="flex items-center gap-2">
                                 <div>
+                                    <img src={`${user?.avatar_url}`} alt="" className="w-12 h-12" />
                                     <Avatar 
                                         data={{
                                             name: user?.name,
