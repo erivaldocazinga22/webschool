@@ -12,23 +12,31 @@ class PublicacaoController extends Controller
      */
     public function index()
     {
-        //
+        $publicacao = Publicacao::all();
+        return response()->json($publicacao);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        //$arquivoNome = 'gp.jpg';
+
+        if ($request->hasFile('caminho')) {
+            $caminhoImagem = $request->caminho->store('uploads');
+            $request['caminho'] = $caminhoImagem;
+        }
+
+        $publicacao = Publicacao::create($request->all());
+        //$retorno = [$publicacao, $request->all() ];
+        return response()->json ($publicacao);
+
+       //return $request;
     }
 
     /**
