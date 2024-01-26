@@ -26,15 +26,24 @@ class PublicacaoController extends Controller
     public function store(Request $request)
     {
         //$arquivoNome = 'gp.jpg';
+        //dd($request->all());
+       /* if ($request->hasFile('imagem')) {
+            $file = $request->file('caminho');
+            $caminhoImagem = $file->storeAs('uploads', $file->getClientOriginalName(), 'public');
 
-        if ($request->hasFile('caminho')) {
-            $caminhoImagem = $request->caminho->store('uploads');
-            $request['caminho'] = $caminhoImagem;
+            // Você pode usar $caminhoImagem conforme necessário
+            // ...
+
+            $request->merge(['caminho' => $caminhoImagem]);
         }
-
-        $publicacao = Publicacao::create($request->all());
+*/
+         for ($i=0; $i < count ($request->allFiles()['images']); $i++) {
+            var_dump($i);
+            $file = $request->allFiles()['images'][$i];
+         }
+        ///$publicacao = Publicacao::create($request->all());
         //$retorno = [$publicacao, $request->all() ];
-        return response()->json ($publicacao);
+        //return response()->json ($publicacao);
 
        //return $request;
     }
