@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PublicacaoController;
 use App\Http\Controllers\UserController;
 use App\Models\Professor;
 use Illuminate\Http\Request;
@@ -36,3 +37,5 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('dashboard/alunos', [AlunoController::class, 'store'])->middleware('auth:sanctum');
     Route::get('dashboard/alunos/{id}', [AlunoController::class, 'show']);
 });
+
+Route::resource('/publicacaos', PublicacaoController::class);

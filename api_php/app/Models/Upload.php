@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Publicacao extends Model
+class Upload extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
-        'id_user',
-        'texto',
-        'caminho'
+        'id_post',
+        'path',
     ];
 
-    public function imagens()
+    public function post()
     {
-        return $this->hasMany(Upload::class);
+        return $this->belongsTo(Publicacao::class);
     }
-
 }
