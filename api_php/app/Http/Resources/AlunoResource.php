@@ -15,7 +15,9 @@ class AlunoResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'User' => $this->user,
+            'processo' => $this->user->processo,
+            'nome' => $this->user->name,
+            'genero' => $this->user->sexo,
             'Curso' => $this->curso,
             'Classe' => $this->classe,
             'Turma' => $this->turma,

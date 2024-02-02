@@ -10,14 +10,18 @@ class Publicacao extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_user',
+        'user_id',
         'texto',
-        'caminho'
+        'path'
     ];
 
-    public function imagens()
+    public function imagem()
     {
-        return $this->hasMany(Upload::class);
+        return $this->hasOne(Upload::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

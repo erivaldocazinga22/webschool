@@ -21,15 +21,26 @@ class User extends Authenticatable
         return $this->hasOne(Professor::class);
     }
 
+    public function publicacaos()
+    {
+        return $this->hasOne(Publicacao::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'processo',
         'name',
         'email',
+        'telefone',
+        'sexo',
+        'avatar_url',
+        'identificacao',
         'password',
+        'nivel',
+        'data_nascimento', // Adicione 'nivel' se não estiver presente
     ];
 
     /**

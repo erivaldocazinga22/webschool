@@ -4,15 +4,28 @@ import InputCheckboxCuston from "../Form/InputCheckboxCuston";
 import { PublicationData } from "@/types";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
+import { api } from "@/axios.config";
+import { parseCookies } from "nookies";
+import { toast } from "react-toastify";
 
 export default function TableRow({ datas }: { datas: PublicationData[] }) {
 
-    const handleUpdated = async (unique: number) => {
-        alert(unique)
+    const handleUpdated = async (id: number) => {
+        alert(id)
     }
 
-    const handleDeleted = async (unique: number) => {
-        alert(unique)
+    const handleDeleted = async (id: number) => {
+        const { "webschool.token": token } = parseCookies();
+        try {
+            api.defaults.headers["Authorization"] = `Bearer ${token}`;
+            const { data: response } = await api.delete(`/publicacaos/${id}`);
+            if (response.status === 200) {
+                toast.success(response.message)
+            }
+        } catch (error) {
+            console.error("Error fetching users:", error);
+            toast.error("Falha ao eliminar a publicação")
+        }
     }
 
     return (

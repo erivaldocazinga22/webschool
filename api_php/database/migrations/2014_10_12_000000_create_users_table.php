@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('sexo', ['M', 'F']);
             $table->string('email')->unique();
             $table->string('telefone', 255);
+            $table->date('data_nascimento');
             $table->enum('nivel', ['1', '2', '3', '4']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

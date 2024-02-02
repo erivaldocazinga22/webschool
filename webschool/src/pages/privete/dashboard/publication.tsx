@@ -1,10 +1,12 @@
-import { LuCalendar, LuClock, LuIndent } from "react-icons/lu";
+import { LuCalendar, LuClock, LuIndent, LuPlus } from "react-icons/lu";
 import BookMarker from "@/components/basics/BookMarker";
 import Table from "@/components/basics/Table";
 import { useEffect, useState } from "react";
 import { parseCookies } from "nookies";
 import { api } from "@/axios.config";
 import { PublicationData } from "@/types";
+import Modal from "@/components/basics/Modal";
+import CreatePostForm from "@/components/pages/Publications/Form";
 
 export default function Publications() {
 
@@ -15,7 +17,7 @@ export default function Publications() {
 
     useEffect(() => {
        (async () => {
-        const { "webschool.token": token } = parseCookies();
+            const { "webschool.token": token } = parseCookies();
             try {
                 api.defaults.headers["Authorization"] = `Bearer ${token}`;
                 const { data: response } = await api.get("/publicacaos");
@@ -58,12 +60,14 @@ export default function Publications() {
             </div>
             <div>
                 <Table.Root navbar={
-                    <Table.PageNavBar 
-                        PerPage={publicationsPerPage}
-                        paginate={paginate} 
-                        currentPage={currentPage} 
-                        datas={publications} 
-                    />
+                    <div className="px-14">
+                        <Table.PageNavBar 
+                            PerPage={publicationsPerPage}
+                            paginate={paginate} 
+                            currentPage={currentPage} 
+                            datas={publications} 
+                        />
+                    </div>
                 }>
                     <Table.thead headers={
                         ["Ordem", "Quem publicou", "Descrição", "Link", "Acções"]
@@ -72,6 +76,20 @@ export default function Publications() {
                         <Table.RowPublication datas={currentPublications} />
                     </Table.tbody>
                 </Table.Root>
+            </div>
+
+            <div>
+                <Modal element={
+                    <div className="z-50 absolute bottom-4 right-4">
+                        <button type="button" 
+                            className="w-11 h-11 flex items-center gap-1 justify-center rounded-full text-white bg-webschool-first">
+                            <LuPlus size={24} strokeWidth={1.5} />
+                        </button>
+                    </div>
+                    
+                }>
+                    <CreatePostForm />
+                </Modal>
             </div>
         </div>
     )

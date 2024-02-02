@@ -28,7 +28,19 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataForm = $request->all();
+        $path = 'files';
+        if($request->file()){
+           foreach ($dataForm['files'] as $key => $file) {
+            $image = $file;
+            $nameImage = uniqid(date('Ymdh'. $key)) . '.' . $image->getClientOriginalExtension();
+            $uploadFiles = $image->storeAs($path, $nameImage);
+            $dados = ['id_post' => 11,, 'path'=> $uploadFiles];
+            $cadbd = Upload::create( $dados);
+
+           }
+       dd($cadbd);
+        }
     }
 
     /**

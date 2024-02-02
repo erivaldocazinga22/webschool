@@ -10,6 +10,13 @@ class Professor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'curso',
+        'classe',
+        'turma',
+
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);

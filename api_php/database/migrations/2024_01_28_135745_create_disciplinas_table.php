@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('publicacaos', function (Blueprint $table) {
+        Schema::create('disciplinas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->constrained('users');
-            $table->text('texto');
-            $table->text('url_arquivo')->nullable();
+            $table->string('nome');
+            $table->string('curso');
+            $table->string('classe');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('publicacaos');
+        Schema::dropIfExists('disciplinas');
     }
 };

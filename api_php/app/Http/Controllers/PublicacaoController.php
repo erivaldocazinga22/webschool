@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PublicacaoResource;
 use App\Models\Publicacao;
+use App\Models\Upload;
+use App\Traits\HttpResponses;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PublicacaoController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $publicacao = Publicacao::all();
-        return response()->json($publicacao);
+        return PublicacaoResource::collection(Publicacao::with('user')->get());
+        //$publicacao = Publicacao::with('user');
+        //return response()->json($publicacao);
     }
 
     /**
@@ -25,28 +32,40 @@ class PublicacaoController extends Controller
      */
     public function store(Request $request)
     {
-        //$arquivoNome = 'gp.jpg';
-        //dd($request->all());
-       /* if ($request->hasFile('imagem')) {
-            $file = $request->file('caminho');
-            $caminhoImagem = $file->storeAs('uploads', $file->getClientOriginalName(), 'public');
+        $dataForm = $request->all();
+       if($request->file()){
+    
+      
+        $path = 'files';
+            $image = $request->imagem;
+            $nameImage = uniqid(date('Ymdh'. 'image')) . '.' . $image->getClientOriginalExtension();
+            $uploadFiles = $image->storeAs($path, $nameImage);
+            $dataForm['path'] = $uploadFiles;
 
-            // Você pode usar $caminhoImagem conforme necessário
-            // ...
+        $regra = 'nullable';
+       }else{
+        $regra = 'required';
+       }
+        $validador = Validator::make($dataForm, [
+            'user_id' => 'required',
+            'texto' => $regra,
+            'path' => 'nullable'
+            
+        ]);
 
-            $request->merge(['caminho' => $caminhoImagem]);
+        if ($validador->fails()) {
+            return $this->error('data invalid', 422, $validador->errors());
         }
-*/
-         for ($i=0; $i < count ($request->allFiles()['images']); $i++) {
-            var_dump($i);
-            $file = $request->allFiles()['images'][$i];
-         }
-        ///$publicacao = Publicacao::create($request->all());
-        //$retorno = [$publicacao, $request->all() ];
-        //return response()->json ($publicacao);
+        $publicacao = Publicacao::create($dataForm);
 
-       //return $request;
-    }
+        if($publicacao) {
+            return $this->response('Post Criado com sucesso', 200, new PublicacaoResource($publicacao->load('user')));
+        }
+
+
+        return response()->json ($publicacao);
+    
+}
 
     /**
      * Display the specified resource.
@@ -61,7 +80,7 @@ class PublicacaoController extends Controller
      */
     public function edit(Publicacao $publicacao)
     {
-        //
+   
     }
 
     /**
@@ -77,6 +96,15 @@ class PublicacaoController extends Controller
      */
     public function destroy(Publicacao $publicacao)
     {
-        //
+       // if($publicacao->find($publicacao->id)) {;
+            $delete = $publicacao->delete();
+            if($delete) {
+                return $this->response('Post apagado com sucesso', 200);
+            }
+        //}else{
+            return response('Post  nao sucesso', 200);
+       // }
+       
     }
+
 }

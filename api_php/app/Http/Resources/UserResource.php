@@ -18,10 +18,10 @@ class UserResource extends JsonResource
         $dados = 0;
         switch ( $this->nivel) {
             case '2':
-               $dados = ['Aluno',$this->alunos];
+               $dados = [$this->alunos];
                 break;
             case '3':
-                $dados = ['Professor', $this->professores];
+                $dados = [$this->professores];
                 break;
             case '3':
                     $dados = $this->encarregados;
@@ -32,12 +32,13 @@ class UserResource extends JsonResource
                 break;
         }
         return [
-            'tipo user' => $dados,
+             $dados,
             'nivel' => $this->nivel,
-            'Processo' => $this->processo,
-            'Nome' => $this->name,
-            'Email' => $this->email,
-            'Telefone' => $this->telefone,
+            'processo' => $this->processo,
+            'nome' => $this->name,
+            'email' => $this->email,
+            'telefone' => $this->telefone,
+            'sexo' => $this->sexo,
         ];
     }
 }

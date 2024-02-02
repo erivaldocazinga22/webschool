@@ -1,14 +1,14 @@
 import { LuImage, LuMoreHorizontal, LuSmile, LuX } from "react-icons/lu";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import Popup from "../../../basics/Popup";
-import Avatar from "../../../basics/Avatar";
-import Button from "../../../basics/Form/Button";
-import { useSession } from "../../../../contexts/session/sessionContext";
-import { CreatePostData, CreatePostSchema } from "../../../../schemas/CreatePostSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTheme } from "../../../../contexts/Theme/themeContext";
-import { api } from "../../../../axios.config";
+import Popup from "@/components/basics/Popup";
+import Avatar from "@/components/basics/Avatar";
+import Button from "@/components/basics/Form/Button";
+import { useSession } from "@/contexts/session/sessionContext";
+import { CreatePostData, CreatePostSchema } from "@/schemas/CreatePostSchema";
+import { useTheme } from "@/contexts/Theme/themeContext";
+import { api } from "@/axios.config";
 import { parseCookies } from "nookies";
 
 export default function CreatePostForm() {
@@ -35,8 +35,6 @@ export default function CreatePostForm() {
             ResquestData.append(`foto${i}`,fotos[i]);
         } */
             
-        
-        
         try {
             const { data: response } = await api.post("/publicacaos", RequestData);
             console.log(response);

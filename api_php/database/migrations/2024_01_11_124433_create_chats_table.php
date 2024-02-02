@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('curso', 200);
             $table->string('classe', 200);
             $table->string('turma', 200);
-            $table->string('disciplina', 200);
-            $table->string('url_arquivo', 200);
+            $table->string('cod_turma', 200);
+            $table->string('url_arquivo', 200)->nullable();
             $table->timestamps();
         });
     }
