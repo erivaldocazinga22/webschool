@@ -17,8 +17,8 @@ export default  function Sidebar() {
     useEffect(() => setActive(location.pathname), [location.pathname]);
 
     return (
-        <aside className="w-basic pt-2 pb-4 flex flex-col items-center justify-between bg-white dark:bg-webschool-400 border-r border-zinc-50 dark:border-webschool-300 transition-colors duration-150">
-            <Link to="/">
+        <aside className="z-50 w-screen h-basic px-6 md:px-0 md:w-basic md:h-screen pt-2 pb-4 flex md:flex-col items-center justify-between bg-white dark:bg-webschool-400 border-t md:border-r border-zinc-50 dark:border-webschool-300 transition-colors duration-150">
+            <Link to="/" className="hidden md:flex">
                 <div className={`w-14 h-14 relative flex items-center justify-center`}>
                     <img src="/logomarca.svg"  alt="logomarca webschool" className="w-12 h-12" />
                 </div>

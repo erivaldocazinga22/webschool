@@ -11,7 +11,7 @@ export default function SearchBarInput({ id, className, placeholder, ...rest }: 
             type="search" 
             id={id}
             placeholder={placeholder}
-            className={twMerge("bg-transparent outline-none px-1 placeholder:text-sm placeholder:text-webschool-100 text-base font-normal transition-colors duration-150", className)}
+            className={twMerge("w-full flex-1 bg-transparent outline-none px-1 placeholder:text-sm placeholder:text-webschool-100 text-base font-normal transition-colors duration-150", className)}
         />
     )
 }

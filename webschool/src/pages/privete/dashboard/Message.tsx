@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { IoSend } from "react-icons/io5";
 import { LuArrowLeft, LuListFilter, LuSearch, LuSmile } from "react-icons/lu";
 
-import Popup from "../../components/basics/Popup";
-import Avatar from "../../components/basics/Avatar";
-import { SearchBar } from "../../components/basics/SearchBar";
-import { useSession } from "../../contexts/session/sessionContext";
+import Popup from "@/components/basics/Popup";
+import Avatar from "@/components/basics/Avatar";
+import { SearchBar } from "@/components/basics/SearchBar";
+import { useSession } from "@/contexts/session/sessionContext";
 import { useEffect, useState } from "react";
 import { parseCookies } from "nookies";
 import { api } from "@/axios.config";
@@ -24,7 +24,7 @@ type ChatDataType = {
     updated_at: Date | null
 }
 
-export default function Message() {
+export default function DashMessage() {
 
     const { user } = useSession();
     const [messages, setMessages] = useState<ChatDataType[]>([]);
@@ -50,7 +50,7 @@ export default function Message() {
                 <header className="px-4 py-2 space-y-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 ">
-                            <Link to={"/"}>
+                            <Link to={"/dashboard"}>
                                 <div className="w-8 h-8 flex items-center justify-center">
                                     <LuArrowLeft size={20} strokeWidth={1.5} />
                                 </div>

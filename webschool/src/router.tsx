@@ -6,13 +6,14 @@ import NotFound404 from "@/pages/404";
 
 import RootLayout from "@/pages/privete/Layout";
 import Feed from "@/pages/privete/Feed";
+import Message from "./pages/privete/Message";
+import Vitrine from "./pages/privete/Vitrine";
 
 import Dashboard from "./pages/privete/dashboard";
 import DashVitrine from "./pages/privete/dashboard/Vitrine";
 import Users from "./pages/privete/dashboard/users";
 import Publications from "./pages/privete/dashboard/publication";
-import Message from "./pages/privete/Message";
-import Vitrine from "./pages/privete/Vitrine";
+import DashMessage from "./pages/privete/dashboard/Message";
 
 export const Routers = createBrowserRouter([
     {
@@ -47,7 +48,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: "/dashboard/messages",
-                element: <Message />,
+                element: <DashMessage />,
             },
         ]
     },
@@ -57,16 +58,20 @@ export const Routers = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Feed />
+                element: <Feed />,
+                loader: ({ request }) =>
+                fetch("http://127.0.0.1:8000/api/publicacaos", {
+                  signal: request.signal,
+                }),
             },
             {
                 path: "/vitrine",
                 element: <Vitrine />
+            },
+            {
+                path: "/messages",
+                element: <Message />,
             }
         ]
     },
-    {
-        path: "/messages",
-        element: <Message />,
-    }
 ]);

@@ -1,3 +1,4 @@
+
 export type UserData = {
     id: number,
     processo: number,
@@ -20,7 +21,7 @@ export type PublicationData = {
     name: string,
     email: string,
     text: string,
-    fotos: null,
+    fotos: string[] | null,
     avatar_url: string | null,
     nivel: "1" | "2" | "3" | "4",
     created_at?: Date | null

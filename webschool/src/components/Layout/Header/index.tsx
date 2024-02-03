@@ -16,9 +16,9 @@ export default function Header() {
                 {user?.nivel === "1" ? (
                     <h1 className="font-medium text-2xl">Dashboard</h1>
                 ): (
-                    <SearchBar.Root>
+                    <SearchBar.Root className="">
                         <SearchBar.Icon icon={LuSearch}/>
-                        <SearchBar.Input placeholder="Pesquisar no feed"/>
+                        <SearchBar.Input className="hidden xl:flex" placeholder="Pesquisar no feed"/>
                     </SearchBar.Root>
                 )}
             </div>

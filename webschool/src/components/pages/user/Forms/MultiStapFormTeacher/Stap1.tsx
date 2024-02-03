@@ -17,11 +17,11 @@ export default function Stap1() {
                         min="0" 
                         max="9999999999999999"
                         placeholder="ex: 0055" 
-                        {...register("process_number")}
-                        className={twMerge("max-w-[150px] px-4 py-1.5 rounded-md outline-none placeholder:text-zinc-400 dark:placeholder:text-webschool-100 bg-zinc-200 dark:bg-webschool-200",  `${errors?.process_number && "ring-red-500 dark:ring-red-500 focus:ring-1 focus:ring-red-500"}`)} 
+                        {...register("processo")}
+                        className={twMerge("max-w-[150px] px-4 py-1.5 rounded-md outline-none placeholder:text-zinc-400 dark:placeholder:text-webschool-100 bg-zinc-200 dark:bg-webschool-200",  `${errors?.processo && "ring-red-500 dark:ring-red-500 focus:ring-1 focus:ring-red-500"}`)} 
                     />
                     <div className="h-6 ">
-                        {errors?.process_number && <p className="text-sm text-red-500">{errors?.process_number.message}</p>}
+                        {errors?.processo && <p className="text-sm text-red-500">{errors?.processo.message}</p>}
                     </div>
                 </label>
                 <label htmlFor="name" className="flex-1">
@@ -57,33 +57,33 @@ export default function Stap1() {
                     <input
                         type="radio" 
                         id="masc"
-                        {...register("genero")}
+                        {...register("sexo")}
                         value="M" 
                     />
-                    <span className="text-legend">Masculino</span>
+                    <span>Masculino</span>
                 </label>
                 <label htmlFor="fem" className="space-x-2">
                     <input
                         type="radio" 
                         id="fem" 
-                        {...register("genero")} 
+                        {...register("sexo")} 
                         value="F" 
                     />
-                    <span className="text-legend">Femenino</span>
+                    <span>Femenino</span>
                 </label>
             </div>
             <div className="flex items-center gap-2">
-                <label htmlFor="doc_identif">
+                <label htmlFor="option_identificacao">
                     <span className="text-sm block text-webschool-100">Documento de Identificação</span>
-                    <select {...register("doc_identif")}  name="doc_identif" id="doc_identif"
-                         className={twMerge("w-full px-4 py-1.5 rounded-md outline-none placeholder:text-zinc-400 dark:placeholder:text-webschool-100 bg-zinc-200 dark:bg-webschool-200",  `${errors?.doc_identif && "ring-red-500 dark:ring-red-500 focus:ring-1 focus:ring-red-500"}`)} 
+                    <select {...register("option_identificacao")}  name="option_identificacao" id="option_identificacao"
+                         className={twMerge("w-full px-4 py-1.5 rounded-md outline-none placeholder:text-zinc-400 dark:placeholder:text-webschool-100 bg-zinc-200 dark:bg-webschool-200",  `${errors?.option_identificacao && "ring-red-500 dark:ring-red-500 focus:ring-1 focus:ring-red-500"}`)} 
                     >
                         <option value="">Seleccione o Documento</option>
                         <option value="BI">Bilhete de Identidade</option>
                         <option value="PASSAPORTE">Passaporte</option>
                     </select>
                     <div className="h-6 ">
-                        {errors?.doc_identif && <p className="text-sm text-red-500">{errors?.doc_identif.message}</p>}
+                        {errors?.option_identificacao && <p className="text-sm text-red-500">{errors?.option_identificacao.message}</p>}
                     </div>
                 </label>
     

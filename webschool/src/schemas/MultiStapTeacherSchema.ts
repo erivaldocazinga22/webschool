@@ -1,14 +1,21 @@
 import { z } from "zod";
 
 export const MultiStapTeacherSchema = z.object({
-    process_number: z.number().int().positive()
-        .min(1, "Campo obrigatório")
-        .transform(value => parseInt(value, 10) || 0),
-    name: z.string().min(3, "Campo obrigatório"),
-    data_nascimento: z.date(),
-    genero: z.enum(["M", "F"]),
-    doc_identif: z.enum(["BI", "PASSAPORTE"]),
-    identificacao: z.string().min(13)
+    processo: z.number().int().positive().min(1, "Campo obrigatório") || z.string(),
+    identificacao: z.string(),
+    avatar_url: z.string() || z.null,
+    name: z.string(),
+    sexo: z.enum(["F", "M"]),
+    password: z.string(),
+    data_nascimento: z.date() || z.string(),
+    email: z.string(),
+    telefone: z.string(),
+    option_identificacao: z.enum(["BI", "PASSAPORTE"]),
+    nivel: z.enum(["1", "2", "3", "4"]),
+    turma: z.string(),
+    disciplina: z.string(),
+    classe: z.string(),
+    curso: z.string()
 });
 
 export type MultiStapTeacherData = z.infer<typeof MultiStapTeacherSchema>;

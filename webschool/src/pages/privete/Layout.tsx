@@ -13,14 +13,16 @@ export default function RootLayout() {
 
     return (
         <SessionProvider>
-            <div className="w-screen min-h-screen h-screen flex text-zinc-900 bg-white dark:text-white dark:bg-webschool-400 overflow-hidden transition-colors duration-150">
-                    {active !== "/dashboard/messages" && ( <Sidebar />)}
-                    <section className="flex-1 w-full h-screen"> 
-                        {active !== "/dashboard/messages" && (
-                            <Header />  
-                        )}
-                        <Outlet /> 
-                    </section>
+            <div className="w-screen min-h-screen h-screen flex md:flex-row flex-col-reverse text-zinc-900 bg-white dark:text-white dark:bg-webschool-400 overflow-hidden transition-colors duration-150">
+                {active !== "/dashboard/messages" && ( 
+                    <Sidebar />
+                )}
+                <section className="flex-1 w-full h-[calc(100vh-70px)] md:h-screen"> 
+                    {active !== "/dashboard/messages" && (
+                        <Header />  
+                    )}
+                    <Outlet /> 
+                </section>
             </div>
         </SessionProvider>
     )

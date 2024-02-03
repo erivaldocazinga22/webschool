@@ -1,14 +1,10 @@
-import { ElementType } from "react";
 import { Link } from "react-router-dom";
-import SidebarElementItem from "./SidebarElementItem";
+import SidebarElementItem, { SidebarElementItemProps } from "./SidebarElementItem";
 
-type SidebarElementLinkProps = {
-    active: string,
-    icon: ElementType, 
-    text: string, 
+type SidebarElementLinkProps = SidebarElementItemProps & {
+    active: string
     href: string
 }
-
 
 export default function SidebarElementLink({ icon, text, active, href }: SidebarElementLinkProps) {
     return (
