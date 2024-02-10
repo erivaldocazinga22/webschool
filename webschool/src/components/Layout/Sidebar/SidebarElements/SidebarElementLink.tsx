@@ -11,7 +11,7 @@ export default function SidebarElementLink({ icon, text, active, href }: Sidebar
         <Link to={href}>
             <SidebarElementItem 
                 icon={icon} text={text}  
-                className={`${active === href && "bg-webschool-first hover:bg-webschool-first dark:bg-webschool-first dark:hover:bg-webschool-first text-white dark:text-white transition-colors duration-150"}`}
+                className={`${active === href && "bg-webschool-first hover:bg-webschool-first dark:bg-webschool-first dark:hover:bg-webschool-first md:dark:hover:bg-webschool-first text-white dark:text-white transition-colors duration-150"}`}
             />
         </Link>
     )

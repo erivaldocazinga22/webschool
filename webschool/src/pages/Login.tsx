@@ -43,7 +43,7 @@ export default function Login() {
     return (
         <div className="w-full h-full flex bg-emerald-400">
             <div className="lg:w-1/2 hidden h-full flex-1 lg:flex items-center justify-center bg-webschool-first bg-left-top bg-[url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
-            
+                
             </div>
             <div className="relative lg:w-1/2 h-full flex-1 flex items-center justify-center bg-white">
                 <div className="w-full space-y-10 px-6 lg:px-4">

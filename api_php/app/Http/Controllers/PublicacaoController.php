@@ -36,7 +36,7 @@ class PublicacaoController extends Controller
        if($request->file()){
     
       
-        $path = 'files';
+        $path = 'webschool_upload';
             $image = $request->imagem;
             $nameImage = uniqid(date('Ymdh'. 'image')) . '.' . $image->getClientOriginalExtension();
             $uploadFiles = $image->storeAs($path, $nameImage);
@@ -72,7 +72,7 @@ class PublicacaoController extends Controller
      */
     public function show(Publicacao $publicacao)
     {
-        //
+        return new PublicacaoResource(Publicacao::with('user')->first());                                           
     }
 
     /**

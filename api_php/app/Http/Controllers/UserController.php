@@ -21,8 +21,10 @@ class UserController extends Controller
     public function index()
     {
         
-        return response()->json(User::all());
-        //return UserResource::collection(User::all());
+        //return response()->json(User::all());
+        
+     
+     return UserResource::collection(User::all());
 
     }
 
@@ -117,9 +119,15 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+       
+        $delete = $user->delete();
+        dd($delete);
+        if($delete) {
+            return $this->response('Usuario apagado com sucesso', 200);
+        }
+        return response('Usuario nao apagado', 200);
     }
     public function login(Request $request)
     {

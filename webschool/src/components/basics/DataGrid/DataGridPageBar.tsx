@@ -4,13 +4,14 @@ type TablePageNavBarProps = {
     paginate: (pageNumber: number)=> void
     currentPage: number 
     datas: UserData[] | PublicationData[],
-    PerPage: number
+    PerPage: number,
+    totalOf: string
 }
 
-export default function TablePageNavBar({ paginate, currentPage, datas, PerPage }: TablePageNavBarProps) {
+export default function DataGridPageBar({ paginate, currentPage, datas, PerPage, totalOf }: TablePageNavBarProps) {
     return (
         <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
-            <span className="text-sm font-normal text-zinc-500 dark:text-zinc-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">Total de usuários <span className="font-semibold text-zinc-900 dark:text-white">{datas.length}</span></span>
+            <span className="text-sm font-normal text-zinc-500 dark:text-zinc-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">Total de {totalOf} <span className="font-semibold text-zinc-900 dark:text-white">{datas.length}</span></span>
             <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
                 <li>
                     <button

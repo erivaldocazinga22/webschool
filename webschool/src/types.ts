@@ -12,7 +12,14 @@ export type UserData = {
     created_at: Date | null,
     updated_at?: Date | null
     email_verified_at?: string
-    remember_token?: string
+    remember_token?: string,
+}
+
+export type UserListData = UserData & {
+    user_id: number,
+    curso: string,
+    classe: string,
+    turma: string,
 }
 
 export type PublicationData = {

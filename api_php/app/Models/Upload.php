@@ -13,6 +13,7 @@ class Upload extends Model
     protected $fillable = [
         'id_post',
         'path',
+       
     ];
 
     public function post()

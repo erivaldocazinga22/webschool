@@ -1,31 +1,17 @@
 import { LuClipboardEdit, LuTrash2 } from "react-icons/lu";
 import Button from "../Form/Button";
 import InputCheckboxCuston from "../Form/InputCheckboxCuston";
-import { PublicationData } from "@/types";
 import Avatar from "../Avatar";
-import { Link } from "react-router-dom";
-import { api } from "@/axios.config";
-import { parseCookies } from "nookies";
-import { toast } from "react-toastify";
+import { UserData } from "@/types";
 
-export default function TableRow({ datas }: { datas: PublicationData[] }) {
+export default function DataGridRowUser({ datas }: { datas: UserData[] }) {
 
-    const handleUpdated = async (id: number) => {
-        alert(id)
+    const handleUpdated = async (unique: number) => {
+        alert(unique);
     }
 
-    const handleDeleted = async (id: number) => {
-        const { "webschool.token": token } = parseCookies();
-        try {
-            api.defaults.headers["Authorization"] = `Bearer ${token}`;
-            const { data: response } = await api.delete(`/publicacaos/${id}`);
-            if (response.status === 200) {
-                toast.success(response.message)
-            }
-        } catch (error) {
-            console.error("Error fetching users:", error);
-            toast.error("Falha ao eliminar a publicação")
-        }
+    const handleDeleted = async (unique: number) => {
+        alert(unique);
     }
 
     return (
@@ -37,7 +23,7 @@ export default function TableRow({ datas }: { datas: PublicationData[] }) {
                             <InputCheckboxCuston id={`${data.id}`} />
                         </div>
                     </td>
-                    <td className="max-w-max px-4 py-2">{data.id}</td>
+                    <td className="max-w-max px-4 py-2">{data.processo}</td>
                     <td className="max-w-max px-4 py-2">
                         <div className="flex items-center justify-start gap-2 px-4 py-2">
                             <Avatar 
@@ -53,23 +39,16 @@ export default function TableRow({ datas }: { datas: PublicationData[] }) {
                             </div>
                         </div>
                     </td>
-                    <td className="max-w-max px-4 py-2">
-                        <span className="font-medium">{data.nivel === "2" ? "Professor" : data.nivel === "1" && "Administrador"}</span>
-                        <p className="text-sm text-zinc-400 dark:text-webschool-100">{data.text}</p>
-                    </td>
-
-                    <td>
-                        <Link to={`/publication/${data.id}`}>
-                            <span className="text-sm text-zinc-400 dark:text-webschool-100 hover:underline hover:text-webschool-first">Ver Publicação</span>
-                        </Link>
-                    </td>
+                    <td className="max-w-max px-4 py-2">{data.identificacao}</td>
+                    <td className="max-w-max px-4 py-2">{`${data.telefone.replace(/\B(?=(\d{3})+(?!\d))/g, '-')}`}</td>
+                    <td className="max-w-max px-4 py-2">{data.sexo}</td>
                     <td className="px-4 py-2">
                         <div className="w-full flex items-center gap-2 justify-center">
-                            <Button onClick={()=> handleUpdated(data.id)} className="py-1 text-zinc-900 bg-zinc-200 dark:text-white dark:bg-webschool-200">
+                            <Button onClick={()=> handleUpdated(data.processo)} className="py-1 text-zinc-900 bg-zinc-200 dark:text-white dark:bg-webschool-200">
                                 <span>Editar</span>
                                 <LuClipboardEdit size={20} strokeWidth={1.5} />
                             </Button>
-                            <Button onClick={()=> handleDeleted(data.id)} className="py-1 text-zinc-900 bg-zinc-200 dark:text-white dark:bg-webschool-200">
+                            <Button onClick={()=> handleDeleted(data.processo)} className="py-1 text-zinc-900 bg-zinc-200 dark:text-white dark:bg-webschool-200">
                                 <span>Excluir</span>
                                 <LuTrash2 size={20} strokeWidth={1.5} />
                             </Button>

@@ -14,6 +14,7 @@ import DashVitrine from "./pages/privete/dashboard/Vitrine";
 import Users from "./pages/privete/dashboard/users";
 import Publications from "./pages/privete/dashboard/publication";
 import DashMessage from "./pages/privete/dashboard/Message";
+import Profile from "./pages/privete/Profile";
 
 export const Routers = createBrowserRouter([
     {
@@ -71,6 +72,10 @@ export const Routers = createBrowserRouter([
             {
                 path: "/messages",
                 element: <Message />,
+            },
+            {
+                path: "/profile",
+                element: <Profile />,
             }
         ]
     },

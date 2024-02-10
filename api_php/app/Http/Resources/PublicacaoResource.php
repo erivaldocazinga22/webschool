@@ -22,7 +22,7 @@ class PublicacaoResource extends JsonResource
             'nivel' => $this->user->nivel,
             'name' => $this->user->name,
             'text' => $this->texto,
-            'fotos' => $this->path,
+            'fotos' =>array($this->path),
             'created_at' => $this->created_at,
            
         ];

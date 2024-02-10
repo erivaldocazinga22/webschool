@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use Illuminate\Http\Request;
+use App\Http\Resources\ChatResource;
 
 class ChatController extends Controller
 {
@@ -12,7 +13,8 @@ class ChatController extends Controller
      */
     public function index()
     {
-       return response()->json(Chat::all());
+      // return response()->json(Chat::all());
+       return ChatResource::collection(Chat::all());
     }
 
     /**

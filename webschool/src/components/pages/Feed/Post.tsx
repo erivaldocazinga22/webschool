@@ -9,6 +9,11 @@ type PostTypes = {
 }
 
 export default function Post({ data }: PostTypes) {
+
+
+    console.log(data.fotos);
+    
+
     return (
         <div className="w-full p-4 rounded-3xl bg-zinc-200 dark:bg-webschool-300">
             <div className="flex items-center justify-between">
@@ -51,9 +56,10 @@ export default function Post({ data }: PostTypes) {
                 {data.fotos ? (
                     data.fotos.map((foto_url, index)=> (
                         <div key={index} className="photo-content">
-                            <img src={foto_url} alt="" />
+                            <img src={`http://127.0.0.1:8000/storage/${foto_url}`} alt="" />
                         </div>
                     ))
+                    /* <span>Foto</span> */
                 ) : data.text.length < 50 ? (
                     <div className="my-4 text-2xl min-w-full min-h-[250px] flex items-center justify-center text-center text-wrap rounded-md bg-red-500 text-white">
                         {data.text}

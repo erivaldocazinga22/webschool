@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export default function TableRoot({ children, navbar }: { children: ReactNode, navbar: ReactNode }) {
+export default function DataGridRoot({ children, navbar }: { children: ReactNode, navbar: ReactNode }) {
     return (
         <main className="h-full flex-1 px-6 flex flex-col">
 

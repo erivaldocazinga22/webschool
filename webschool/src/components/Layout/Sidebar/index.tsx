@@ -1,11 +1,12 @@
 import { LuBell, LuHome, LuLayoutGrid, LuMessageCircle, LuPieChart, LuPlusSquare, LuSettings, LuUsers2 } from "react-icons/lu";
 import { Link, useLocation } from "react-router-dom";
 import { SidebarElements } from "./SidebarElements";
-import Popup from "../../basics/Popup";
-import Notification from "../../basics/Notification";
-import { useSession } from "../../../contexts/session/sessionContext";
+import Popup from "@/components/basics/Popup";
+import Notification from "@/components/basics/Notification";
+import { useSession } from "@/contexts/session/sessionContext";
 import { useEffect, useState } from "react";
-import Modal from "../../basics/Modal";
+import Modal from "@/components/basics/Modal";
+import Settings from "./Settings";
 
 export default  function Sidebar() {
 
@@ -50,7 +51,7 @@ export default  function Sidebar() {
                     <LuSettings size={24} strokeWidth={1.5} />
                 </div>
             }>
-                Definições
+                <Settings></Settings>
             </Modal>
         </aside>
     )

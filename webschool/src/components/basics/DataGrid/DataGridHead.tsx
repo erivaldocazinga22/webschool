@@ -1,6 +1,6 @@
 import InputCheckboxCuston from "../Form/InputCheckboxCuston";
 
-export default function TableHead({ headers }: { headers: string[] }) {
+export default function DataGridHead({ headers }: { headers: string[] }) {
     return (
         <thead className="h-full px-6">
             <tr className="border-b border-zinc-200 dark:border-webschool-300">

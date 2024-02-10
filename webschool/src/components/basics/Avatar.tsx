@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { LuUser2 } from "react-icons/lu";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
@@ -12,22 +13,21 @@ const AvatarSchema = z.object({
 
 type AvatarProps = z.infer<typeof AvatarSchema>;
 
-export default function Avatar({ data: user, className = "" }: AvatarProps) {
+export default function Avatar({ data, className = "" }: AvatarProps) {
+    const { avatar_url, name } = data;
     const [siglas, setSiglas] = useState<string | null>(null);
 
     useEffect(() => {
-        const nameWords = user.name && user.name.split(" ");
-
-        if (nameWords && nameWords.length > 1) {
-            const firstName = nameWords[0].charAt(0);
-            const lastName = nameWords[nameWords.length - 1].charAt(0);
-            setSiglas(`${firstName}${lastName}`);
-        } else if (nameWords && nameWords.length === 1) {
-            setSiglas(nameWords[0].charAt(0));
-        } else {
+        if (!name) {
             setSiglas(null);
+            return;
         }
-    }, [user.name]);
+
+        const nameWords = name.split(" ");
+        const firstName = nameWords[0].charAt(0);
+        const lastName = nameWords[nameWords.length - 1].charAt(0);
+        setSiglas(`${firstName}${lastName}`);
+    }, [name]);
 
     return (
         <div
@@ -37,13 +37,18 @@ export default function Avatar({ data: user, className = "" }: AvatarProps) {
                 bg-white dark:bg-webschool-200 transition-colors duration-150
             `, className)}
         >
-            {user.avatar_url ? (
-                <img src={user.avatar_url} alt="" />
+            
+            {/* <AvatarImage src={`${avatar_url}`} />
+            <AvatarFallback>{siglas}</AvatarFallback> */}
+            {avatar_url ? (
+                <img src={avatar_url} alt="" />
             ) : (
-                siglas && (
+                siglas ? (
                     <span className="font-medium text-zinc-600 uppercase">
                         {siglas}
                     </span>
+                ) : (
+                    <LuUser2 size={24} strokeWidth={1.5} />
                 )
             )}
         </div>

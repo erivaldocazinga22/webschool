@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function (){
 
     Route::get('/dashboard/usuarios', [UserController::class, 'index'])->name('usuario.index');
     Route::get('/dashboard/usuarios/{id}', [UserController::class, 'show'])->name('dashboard.show');
+   
     Route::get('dashboard/professores', [ProfessorController::class, 'index']);
     Route::get('dashboard/professores/{id}', [ProfessorController::class, 'show']);
     Route::post('dashboard/alunos', [AlunoController::class, 'store']);
@@ -47,5 +48,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::resource('/uploads', UploadController::class);
 
 });
+
+Route::delete('/dashboard/usuarios/{user}', [UserController::class, 'destroy'])->name('dashboard.show');
 
 

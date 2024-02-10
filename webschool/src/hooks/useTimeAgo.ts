@@ -13,7 +13,7 @@ export const useTimeAgo = (createdAt: Date | null | undefined) => {
 
       return () => clearInterval(intervalId);
     } else {
-      setTimeAgo('');
+      setTimeAgo('...');
     }
   }, [createdAt]);
 

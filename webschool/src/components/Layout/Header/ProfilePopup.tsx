@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 import { destroyCookie } from "nookies";
 import { LuLogOut } from "react-icons/lu";
 
-import Popup from "../../basics/Popup";
-import Avatar from "../../basics/Avatar";
-import { useSession } from "../../../contexts/session/sessionContext";
+import Popup from "@/components/basics/Popup";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { useSession } from "@/contexts/session/sessionContext";
+import { useAvatarSiglas } from "@/hooks/useAvatarSiglas";
 
 export default function ProfilePopup() {
 
     const { user } = useSession();
+    const siglas = useAvatarSiglas(user?.name);
 
     const handleLogout = ()=> {
         destroyCookie(undefined, "webschool.token");
@@ -18,10 +20,10 @@ export default function ProfilePopup() {
     if(user?.nivel !== "1") {
         return (
             <Link to="/profile">
-                <Avatar data={{
-                    avatar_url: user?.avatar_url,
-                    name: user?.name
-                }} className="rounded-2xl w-11 h-11" />
+                <Avatar className="rounded-2xl w-11 h-11">
+                    <AvatarImage src={`${user?.avatar_url}`} />
+                    <AvatarFallback>{siglas}</AvatarFallback>
+                </Avatar>
             </Link>
         );
     }
@@ -29,12 +31,18 @@ export default function ProfilePopup() {
     return (
         <div>
             <Popup className="top-16 right-0" element={
-                <Avatar data={user} className="rounded-2xl w-11 h-11" />
+                <Avatar className="w-11 h-11">
+                    <AvatarImage src={`${user?.avatar_url}`} />
+                    <AvatarFallback>{siglas}</AvatarFallback>
+                </Avatar>
             }>
                 <div className="w-[200px] rounded-md overflow-hidden shadow dark:drop-shadow-md dark:shadow-webschool-300">
                     <div className="h-14 bg-gradient-to-t to-blue-500 from-blue-400">
                         <div className="absolute top-[30px] left-1/2 -translate-x-1/2">
-                            <Avatar className="cursor-default" data={user} />
+                        <Avatar className="rounded-2xl w-11 h-11">
+                            <AvatarImage src={`${user?.avatar_url}`} />
+                            <AvatarFallback>{siglas}</AvatarFallback>
+                        </Avatar>
                         </div>
                     </div>
                     <div className="flex flex-col items-center pb-4 pt-10 bg-zinc-50 dark:bg-webschool-300">
