@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('uploads', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_post')->constrained('publicacaos');
+            $table->foreignId('id_post')->constrained('publicacaos')->onDelete('cascade');
             $table->text('path');
             $table->timestamps();
         });

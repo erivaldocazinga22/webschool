@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('publicacaos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->text('texto');
-            $table->text('url_arquivo')->nullable();
+            $table->text('path')->nullable();
             $table->timestamps();
         });
     }

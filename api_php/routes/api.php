@@ -4,11 +4,13 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\PublicacaoController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use App\Models\Professor;
+use App\Models\Publicacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +37,6 @@ Route::middleware('auth:sanctum')->group(function (){
 
     Route::get('/dashboard/usuarios', [UserController::class, 'index'])->name('usuario.index');
     Route::get('/dashboard/usuarios/{id}', [UserController::class, 'show'])->name('dashboard.show');
-   
     Route::get('dashboard/professores', [ProfessorController::class, 'index']);
     Route::get('dashboard/professores/{id}', [ProfessorController::class, 'show']);
     Route::post('dashboard/alunos', [AlunoController::class, 'store']);
@@ -50,5 +51,9 @@ Route::middleware('auth:sanctum')->group(function (){
 });
 
 Route::delete('/dashboard/usuarios/{user}', [UserController::class, 'destroy'])->name('dashboard.show');
+Route::post('/dashboard/usuarios/delete-multiple', [UserController::class, 'deleteUsers'])->name('dashboard.show');
+Route::post('/dashboard/publicacaos/delete-multiple', [PublicacaoController::class, 'deletePublicacaos'])->name('dashboard.show');
+Route::resource('/comentarios', ComentarioController::class);
+
 
 

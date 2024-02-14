@@ -34,45 +34,46 @@ class PublicacaoController extends Controller
     {
         $dataForm = $request->all();
        if($request->file()){
-    
-      
-        $path = 'webschool_upload';
+
+            $path = 'webschool_upload';
             $image = $request->imagem;
             $nameImage = uniqid(date('Ymdh'. 'image')) . '.' . $image->getClientOriginalExtension();
             $uploadFiles = $image->storeAs($path, $nameImage);
             $dataForm['path'] = $uploadFiles;
-
-        $regra = 'nullable';
+            $regra = 'nullable';
        }else{
-        $regra = 'required';
+
+            $regra = 'required';
        }
         $validador = Validator::make($dataForm, [
             'user_id' => 'required',
             'texto' => $regra,
             'path' => 'nullable'
-            
+
         ]);
 
         if ($validador->fails()) {
-            return $this->error('data invalid', 422, $validador->errors());
+
+            return $this->error('Preencha todos os campos', 422, $validador->errors());
         }
         $publicacao = Publicacao::create($dataForm);
 
         if($publicacao) {
+
             return $this->response('Post Criado com sucesso', 200, new PublicacaoResource($publicacao->load('user')));
         }
 
 
         return response()->json ($publicacao);
-    
-}
+
+    }
 
     /**
      * Display the specified resource.
      */
     public function show(Publicacao $publicacao)
     {
-        return new PublicacaoResource(Publicacao::with('user')->first());                                           
+        return new PublicacaoResource(Publicacao::with('user')->first());
     }
 
     /**
@@ -80,7 +81,7 @@ class PublicacaoController extends Controller
      */
     public function edit(Publicacao $publicacao)
     {
-   
+
     }
 
     /**
@@ -88,7 +89,44 @@ class PublicacaoController extends Controller
      */
     public function update(Request $request, Publicacao $publicacao)
     {
-        //
+     
+        if($publicacao->user_id == $request->user_id){
+        
+            $dataForm = $request->all();
+            if($request->file()){
+
+                $path = 'webschool_upload';
+                $image = $request->imagem;
+                $nameImage = uniqid(date('Ymdh'. 'image')) . '.' . $image->getClientOriginalExtension();
+                $uploadFiles = $image->storeAs($path, $nameImage);
+                $dataForm['path'] = $uploadFiles;
+                $regra = 'nullable';
+            }else{
+
+                $regra = 'required';
+            }
+            $validador = Validator::make($dataForm, [
+                'user_id' => 'required',
+                'texto' => $regra,
+                'path' => 'nullable'
+
+            ]);
+
+            if ($validador->fails()) {
+
+                return $this->error('data invalid', 422, $validador->errors());
+            }
+
+            $update = $publicacao->update($request->all());
+            if($update){
+                return $this->response('Post atualizado com sucesso', 200, new PublicacaoResource($publicacao->load('user')));
+            // return new PublicacaoResource(Publicacao::with('user')->first());
+            }else{
+                return $this->error('Post não atualizado', 422);
+            }
+        }else{
+            return $this->error('Não tem a permissão para actualizar este post', 422);
+        }
     }
 
     /**
@@ -104,7 +142,21 @@ class PublicacaoController extends Controller
         //}else{
             return response('Post  nao sucesso', 200);
        // }
-       
+
+    }
+
+    public function deletePublicacaos(Request $request)
+    {
+        $userIdsToDelete = null !==($request->input('post_ids')) ? $request->input('post_ids') : false ;
+
+        if ($userIdsToDelete) {
+           if(Publicacao::whereIn('id', $userIdsToDelete)->delete() == 0){
+             return $this->error('Posts não existem', 422);
+           }
+            return $this->response('Posts excluídos com sucesso', 200);
+        }else{
+            return $this->error('Nenhum post selecionado', 422);
+        }
     }
 
 }

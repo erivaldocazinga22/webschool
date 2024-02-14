@@ -29,14 +29,14 @@ class UserResource extends JsonResource
             break;
     }
 
-    return array_merge($dados, [
+    return array_merge([
         'id' => $this->id,
         'nivel' => $this->nivel,
         'processo' => $this->processo,
-        'name' => $this->name,
+        'nome' => $this->name,
         'email' => $this->email,
         'telefone' => $this->telefone,
         'sexo' => $this->sexo,
-    ]);
+    ], $dados);
 }
 }

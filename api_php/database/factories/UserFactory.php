@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'sexo'=>$this->faker->randomElement(['F','M']),
             'email' => fake()->unique()->safeEmail(),
+            'data_nascimento' => $this->faker->dateTimeBetween('-30 years', '-10 years'),
             'telefone' => $this->faker->randomElement(['93599315','923778736','935555500','900000000']),
             'nivel' => $this->faker->randomElement(['2','3']),
             'email_verified_at' => now(),

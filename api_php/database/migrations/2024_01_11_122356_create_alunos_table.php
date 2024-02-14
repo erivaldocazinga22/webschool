@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->constrained('users');
+            $table->foreignId('user_id')->unique()->constrained('users')->onDelete('cascade');
             $table->string('curso', 200);
             $table->string('classe', 200);
             $table->string('turma', 200);

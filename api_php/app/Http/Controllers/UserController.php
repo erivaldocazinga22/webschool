@@ -20,11 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        
-        //return response()->json(User::all());
-        
-     
-     return UserResource::collection(User::all());
+
+     //   return response()->json(User::all());
+        return UserResource::collection(User::all());
 
     }
 
@@ -83,7 +81,7 @@ class UserController extends Controller
      } catch (UniqueConstraintViolationException $e) {
             // Tratar a exceção de violação de restrição única (registro duplicado)
             // Você pode retornar uma resposta JSON informando sobre a duplicidade
-   
+
             return $this->error('Usuário já cadastrado', 422, $validador->errors());
         } catch (\Exception $e) {
             // Outras exceções podem ser tratadas aqui
@@ -121,20 +119,37 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-       
-        $delete = $user->delete();
-        dd($delete);
-        if($delete) {
-            return $this->response('Usuario apagado com sucesso', 200);
-        }
-        return response('Usuario nao apagado', 200);
+
+        //$userId = 1; // Substitua pelo ID real do usuário
+
+
+
+            // Exclua manualmente os registros relacionado
+            // Agora, você pode excluir o usuário
+            //$user->alunos->delete();
+            //$user->professores->delete();`
+
+
+            $user->delete();
+            $userIdsToDelete = [1, 2, 3, 4, 5];
+            User::whereIn('id', $userIdsToDelete)->delete();
+
     }
-    public function login(Request $request)
+
+    public function deleteUsers(Request $request)
     {
-        dd($request);
+        $userIdsToDelete = null !==($request->input('user_ids')) ? $request->input('user_ids') : false ;
+        
+        if ($userIdsToDelete) {
+           if(User::whereIn('id', $userIdsToDelete)->delete() !== 1){
+             return $this->error('Usuários não existem', 422);
+           }
+            return $this->response('Usuários excluídos com sucesso', 200);
+        }else{
+            return $this->error('Usuários não excluídos', 422);
+        }
     }
 }
-
 
 
 

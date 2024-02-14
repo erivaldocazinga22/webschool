@@ -12,7 +12,8 @@ class Publicacao extends Model
     protected $fillable = [
         'user_id',
         'texto',
-        'path'
+        'path',
+        
     ];
 
     public function imagem()
@@ -22,6 +23,10 @@ class Publicacao extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
     }
 
 }

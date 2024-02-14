@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('mensagems', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_usuario')->unique()->constrained('users');
-            $table->foreignId('id_chat')->unique()->constrained('chats');
+            $table->foreignId('id_usuario')->unique()->constrained('users')->onDelete('cascade');
+            $table->foreignId('id_chat')->unique()->constrained('chats')->onDelete('cascade');
             $table->text('texto')->nullable();
             $table->string('url_arquivo', 200)->nullable();
             $table->timestamps();

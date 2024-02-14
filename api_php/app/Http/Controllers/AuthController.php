@@ -18,7 +18,7 @@ class AuthController extends Controller
             $token =  $request->user()->createToken('Adm')->plainTextToken;
             switch ($request->user()->nivel) {
                 case '2':
-                    dd($request->user()->id);
+                   // dd($request->user()->id);
                     $token =  $request->user()->createToken('Professor', ['post-store','chat-update','mensagem-store'])->plainTextToken;
                     break;
                 case '3':
